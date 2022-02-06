@@ -1,3 +1,5 @@
+import time 
+
 sudoku=[[0,8,3,0,0,9,0,0,0],[0,5,0,0,0,0,9,0,0],[0,0,0,0,0,5,0,0,4],[0,0,9,7,6,0,0,0,3],[3,0,0,0,0,0,0,0,1],[2,0,0,0,9,3,5,0,0],[9,0,0,6,0,0,0,0,0],[0,0,4,0,0,0,0,3,0],[0,0,0,8,0,0,7,1,0]]
 
 """sudoku=[]
@@ -16,10 +18,15 @@ empty_positions=[]
 current_pos=(0,0)
 r,c=-1,-1
 ptr=0
+cnt=1
 
-def disp_board(box):
+def disp_board(box,c):
+	print("ITERATION: ",c)
+	print("\n")
 	for j in range(9):
-		print(box[j])
+		for k in range(9):
+			print(box[j][k],end="   ")
+		print("")
 	print("\n"*2)
 	print("-"*30)
 
@@ -84,9 +91,10 @@ def fillTheSquare(box,i,j,bk=False):#To find a compatable number and fill the sq
 
 backtracking=False
 
-disp_board(sudoku)
+
 
 while True:
+	disp_board(sudoku,cnt)
 	if not(backtracking):
 		r,c=move(r,c)
 		if r>8 or c>8:
@@ -112,9 +120,11 @@ while True:
 				sudoku[r][c]=0
 				ptr-=1
 				continue
+	cnt+=1
+	time.sleep(2)
 
 
-disp_board(sudoku)
+disp_board(sudoku,cnt)
 
 
 
